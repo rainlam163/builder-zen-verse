@@ -10,7 +10,7 @@ const tabs = [
   { key: 'me', label: '我的', icon: 'user' },
 ] as const
 
-const current = ref<typeof tabs[number]['key']>('home')
+const current = ref<(typeof tabs)[number]['key']>('home')
 
 const title = computed(() => {
   switch (current.value) {
@@ -23,7 +23,7 @@ const title = computed(() => {
   }
 })
 
-function isActive(key: typeof tabs[number]['key']) {
+function isActive(key: (typeof tabs)[number]['key']) {
   return current.value === key
 }
 </script>
@@ -35,9 +35,14 @@ function isActive(key: typeof tabs[number]['key']) {
       <div class="mx-auto max-w-screen-sm px-5 py-3 flex items-center gap-3">
         <div class="flex items-center gap-2">
           <!-- Logo -->
-          <div class="h-9 w-9 grid place-items-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-card">
+          <div
+            class="h-9 w-9 grid place-items-center rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 text-white shadow-card"
+          >
             <svg viewBox="0 0 24 24" class="h-5 w-5">
-              <path fill="currentColor" d="M12 2c2.21 0 4 1.79 4 4v1h1.5a2.5 2.5 0 0 1 2.45 2.01l.96 4.8c.13.65-.37 1.25-1.03 1.25H4.12c-.66 0-1.16-.6-1.03-1.25l.96-4.8A2.5 2.5 0 0 1 6.5 7H8V6c0-2.21 1.79-4 4-4m-2 4v1h4V6c0-1.1-.9-2-2-2s-2 .9-2 2m-6 13a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/>
+              <path
+                fill="currentColor"
+                d="M12 2c2.21 0 4 1.79 4 4v1h1.5a2.5 2.5 0 0 1 2.45 2.01l.96 4.8c.13.65-.37 1.25-1.03 1.25H4.12c-.66 0-1.16-.6-1.03-1.25l.96-4.8A2.5 2.5 0 0 1 6.5 7H8V6c0-2.21 1.79-4 4-4m-2 4v1h4V6c0-1.1-.9-2-2-2s-2 .9-2 2m-6 13a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"
+              />
             </svg>
           </div>
           <div>
@@ -70,14 +75,32 @@ function isActive(key: typeof tabs[number]['key']) {
           :class="isActive(t.key) ? 'text-brand-600' : 'text-ink-500 hover:text-ink-700'"
         >
           <!-- icons -->
-          <svg v-if="t.icon==='home'" viewBox="0 0 24 24" class="h-6 w-6" :class="isActive(t.key) ? '' : 'opacity-70'">
-            <path fill="currentColor" d="M12 3.1L1 12h2v9h6v-6h6v6h6v-9h2z"/>
+          <svg
+            v-if="t.icon === 'home'"
+            viewBox="0 0 24 24"
+            class="h-6 w-6"
+            :class="isActive(t.key) ? '' : 'opacity-70'"
+          >
+            <path fill="currentColor" d="M12 3.1L1 12h2v9h6v-6h6v6h6v-9h2z" />
           </svg>
-          <svg v-else-if="t.icon==='spark'" viewBox="0 0 24 24" class="h-6 w-6" :class="isActive(t.key) ? '' : 'opacity-70'">
-            <path fill="currentColor" d="m11 2l1.5 5H18l-4 3l1.5 5L11 12l-4.5 3L8 10L4 7h5.5z"/>
+          <svg
+            v-else-if="t.icon === 'spark'"
+            viewBox="0 0 24 24"
+            class="h-6 w-6"
+            :class="isActive(t.key) ? '' : 'opacity-70'"
+          >
+            <path fill="currentColor" d="m11 2l1.5 5H18l-4 3l1.5 5L11 12l-4.5 3L8 10L4 7h5.5z" />
           </svg>
-          <svg v-else viewBox="0 0 24 24" class="h-6 w-6" :class="isActive(t.key) ? '' : 'opacity-70'">
-            <path fill="currentColor" d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4"/>
+          <svg
+            v-else
+            viewBox="0 0 24 24"
+            class="h-6 w-6"
+            :class="isActive(t.key) ? '' : 'opacity-70'"
+          >
+            <path
+              fill="currentColor"
+              d="M12 12a5 5 0 1 0-5-5a5 5 0 0 0 5 5m0 2c-4.42 0-8 1.79-8 4v2h16v-2c0-2.21-3.58-4-8-4"
+            />
           </svg>
           <span class="font-medium">{{ t.label }}</span>
         </button>
@@ -86,5 +109,4 @@ function isActive(key: typeof tabs[number]['key']) {
   </div>
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
