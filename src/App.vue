@@ -29,7 +29,7 @@ function isActive(key: typeof tabs[number]['key']) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-ink-50 text-ink-900 flex flex-col">
+  <div class="min-h-screen bg-ink-50 text-ink-900 flex flex-col font-sans">
     <!-- Top App Bar -->
     <header class="sticky top-0 z-20 bg-white/80 backdrop-blur border-b border-ink-100">
       <div class="mx-auto max-w-screen-sm px-5 py-3 flex items-center gap-3">
